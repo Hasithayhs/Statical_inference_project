@@ -1,0 +1,121 @@
+dat <- read.csv("C:/Users/uamarh1/Desktop/MSC/Semester-3/Statical inference/MobileBankingUsage.csv", header = TRUE)
+
+dat[,2]
+library(ggplot2)
+names(dat)[2]<-"gender"
+ggplot(data = dat)
+ggplot(dat,aes(x=gender)) + geom_bar(fill = "#0073C2FF")
+
+
+dat[,3]
+library(ggplot2)
+names(dat)[3]<-"age_range"
+ggplot(data = dat)
+ggplot(dat,aes(x=age_range)) + geom_bar(fill = "#0073C2FF")
+
+
+dat[,4]
+library(ggplot2)
+names(dat)[4]<-"district"
+ggplot(data = dat)
+ggplot(dat, aes(x="",y="", fill=district)) + geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0) 
+
+
+dat[,5]
+library(ggplot2)
+names(dat)[5]<-"occupation"
+ggplot(data = dat)
+ggplot(dat,aes(x=occupation)) + geom_bar(fill = "#0073C2FF")
+
+
+
+
+
+dat[,6]
+library(ggplot2)
+names(dat)[6]<-"education_level"
+ggplot(data = dat)
+ggplot(dat,aes(x=education_level)) + geom_bar(fill = "#0073C2FF")
+
+
+dat[,7]
+library(ggplot2)
+names(dat)[7]<-"marital_status"
+ggplot(data = dat)
+ggplot(dat,aes(x=marital_status)) + geom_bar(fill = "#0073C2FF")
+
+
+dat[,8]
+library(ggplot2)
+names(dat)[8]<-"monthly_income"
+ggplot(data = dat)
+ggplot(dat, aes(x="",y="", fill=monthly_income)) + geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0) 
+
+
+dat[,9]
+library(ggplot2)
+names(dat)[9]<-"type_of_bank"
+ggplot(data = dat)
+ggplot(dat,aes(x=type_of_bank)) + geom_bar(fill = "#0073C2FF")
+
+
+dat[,10]
+library(ggplot2)
+names(dat)[10]<-"got_to_know"
+ggplot(data = dat)
+ggplot(dat, aes(x="",y="", fill=got_to_know)) + geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0)
+
+
+dat[,11]
+library(ggplot2)
+names(dat)[11]<-"duration_using"
+ggplot(data = dat)
+ggplot(dat, aes(x="",y="", fill=duration_using)) + geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0)
+
+
+dat[,13]
+library(ggplot2)
+names(dat)[13]<-"amount_of_money"
+ggplot(data = dat)
+ggplot(dat, aes(x="",y="", fill=amount_of_money)) + geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0)
+
+dat[,17]
+library(ggplot2)
+names(dat)[17]<-"large_tans"
+ggplot(data = dat)
+ggplot(dat, aes(x="",y="", fill=large_tans)) + geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0)
+
+
+dat[,18]
+library(ggplot2)
+names(dat)[18]<-"service_charges"
+ggplot(data = dat)
+ggplot(dat, aes(x="",y="", fill=service_charges)) + geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0)
+
+
+dat[,19]
+library(ggplot2)
+names(dat)[19]<-"overall_rating"
+ggplot(data = dat)
+ggplot(dat,aes(x=overall_rating)) + geom_bar(fill = "#0073C2FF")
+
+install.packages("mosaic")
+library(mosaic)
+sample_stat <- prop(~gender=="Male",data=dat)
+sample_stat
+internet_boot <- do(1000)*prop(~gender=="Male",data=resample(dat))
+ggplot(data=internet_boot) +
+  geom_histogram(mapping = aes(x = prop_TRUE)) +
+  xlab("Propotions")
+
+
+
+age_range <- do(1000)*prop(~age_range=="Less than 16",data=resample(dat))
+age_range
